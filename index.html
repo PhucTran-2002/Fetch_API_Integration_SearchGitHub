@@ -3,154 +3,121 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Frontend Mentor | GitHub user search app</title>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
   </head>
-  <body>
-    <header class="header header--flex">
-      <h1
-        id="header-title"
-        class="header__title header__title--fs-600 header__title--ff-bold header__title--text-dark"
-      >
-        devfinder
-      </h1>
+  <body class="container">
+    <header class="header">
+      <h1 id="header-title" class="header__title">devfinder</h1>
       <button
         id="header-button"
-        class="header__button header__button--hover header__button--mode header__button--ff-bold header__button--text-accent"
+        class="header__mode-toggle"
         data="dark"
         onclick="changeMode()"
       >
         Dark
         <img
-          src="./assets/icon-moon.svg"
+          class="header__mode-icon"
+          src="./assets/images/icon_moon.svg"
           alt="icon-dark-mode"
-          class="header__icon"
         />
       </button>
     </header>
 
     <main class="main">
-      <div id="searchBar" class="search-bar search-bar--flex">
+      <div id="searchBar" class="search-bar">
         <img
-          src="./assets/icon-search.svg"
-          alt="search"
           class="search-bar__icon"
+          src="./assets/images/icon_search.svg"
+          alt="search"
         />
-        <label for="search" class="search-bar__label search-bar__label--sr-only"
-          >Search GitHub username</label
+        <label for="search" class="search-bar__label sr-only"
+          >Search GitHub useername</label
         >
         <input
           id="search"
-          class="search-bar__input search-bar__input--fs-200"
+          class="search-bar__input"
           placeholder="Search GitHub username..."
         />
-        <div id="search-err" class="search-bar__error">No results</div>
-        <button
-          class="search-bar__button search-bar__button--ff-bold"
-          onclick="getData()"
-        >
-          Search
-        </button>
+        <div id="search-err" class="search-bar__error-message">No results</div>
+        <button class="search-bar__button" onclick="getData()">Search</button>
       </div>
-
-      <article id="infos" class="user-info">
-        <div class="user-info__presentation user-info__presentation--flex">
-          <img src="" alt="avatar" id="obj-avatar" class="user-info__avatar" />
-          <div
-            class="user-info__right user-info__right--flex"
-            style="--gap: 0.05rem"
-          >
-            <h2
-              id="obj-name"
-              class="user-info__name user-info__name--ff-bold user-info__name--fs-500 user-info__name--text-dark"
-            ></h2>
+      <article id="infos" class="profile-card">
+        <div class="profile-card__presentation">
+          <img
+            src=""
+            alt="avatar"
+            id="obj-avatar"
+            class="profile-card__avatar"
+          />
+          <div class="profile-card__header-info">
+            <h2 id="obj-name" class="profile-card__name"></h2>
             <a
               id="obj-username"
+              class="profile-card__username"
               target="_blank"
               href=""
-              class="user-info__username"
             ></a>
-            <p id="obj-date" class="user-info__date"></p>
+            <p id="obj-date" class="profile-card__join-date"></p>
           </div>
         </div>
 
-        <p id="obj-bio" class="user-info__bio"></p>
-
-        <div id="grid-data" class="user-stats">
-          <p
-            class="user-stats__label user-stats__label--repos user-stats__label--fs-200"
-          >
-            Repos
-          </p>
-          <p
-            class="user-stats__label user-stats__label--followers user-stats__label--fs-200"
-          >
-            Followers
-          </p>
-          <p
-            class="user-stats__label user-stats__label--following user-stats__label--fs-200"
-          >
-            Following
-          </p>
-          <p
-            id="obj-repos"
-            class="user-stats__value user-stats__value--fs-500 user-stats__value--ff-bold user-stats__value--text-dark"
-          ></p>
-          <p
-            id="obj-followers"
-            class="user-stats__value user-stats__value--fs-500 user-stats__value--ff-bold user-stats__value--text-dark"
-          ></p>
-          <p
-            id="obj-following"
-            class="user-stats__value user-stats__value--fs-500 user-stats__value--ff-bold user-stats__value--text-dark"
-          ></p>
+        <p id="obj-bio" class="profile-card__bio"></p>
+        <div id="grid-data" class="profile-card__stats-grid">
+          <p class="profile-card__stat-label">Repos</p>
+          <p class="profile-card__stat-label">Followers</p>
+          <p class="profile-card__stat-label">Following</p>
+          <p id="obj-repos" class="profile-card__stat-value"></p>
+          <p id="obj-followers" class="profile-card__stat-value"></p>
+          <p id="obj-following" class="profile-card__stat-value"></p>
         </div>
 
-        <ul class="user-links user-links--grid" style="--gap: 0">
-          <li id="list-item1" class="user-links__item">
+        <ul class="profile-card__social-links">
+          <li id="list-item1" class="profile-card__social-item">
             <img
+              class="profile-card__social-icon"
               src="./assets/images/icon_location.svg"
               alt="icon-location"
-              class="user-links__icon"
             />
-            <p id="obj-location" class="user-links__text"></p>
+            <p id="obj-location" class="profile-card__social-text"></p>
           </li>
-          <li id="list-item2" class="user-links__item">
+          <li id="list-item2" class="profile-card__social-item">
             <img
-              src="./assets/images/icon_twitter.svg"
+              class="profile-card__social-icon"
+              src="./assets/images/icon_website.svg"
               alt="icon-website"
-              class="user-links__icon"
             />
             <a
               id="obj-website"
+              class="profile-card__social-text profile-card__social-text--link"
               target="_blank"
               href=""
-              class="user-links__link"
             ></a>
           </li>
-          <li id="list-item3" class="user-links__item">
+          <li id="list-item3" class="profile-card__social-item">
             <img
-              src="./assets/icon_twitter.svg"
+              class="profile-card__social-icon"
+              src="./assets/images/icon_twitter.svg"
               alt="icon-twitter"
-              class="user-links__icon"
             />
             <a
               id="obj-twitter"
+              class="profile-card__social-text profile-card__social-text--link"
               target="_blank"
               href=""
-              class="user-links__link"
             ></a>
           </li>
-          <li id="list-item4" class="user-links__item">
+          <li id="list-item4" class="profile-card__social-item">
             <img
-              src="./assets/icon_company.svg"
+              class="profile-card__social-icon"
+              src="./assets/images/icon_company.svg"
               alt="icon-company"
-              class="user-links__icon"
             />
             <a
               id="obj-company"
+              class="profile-card__social-text profile-card__social-text--link"
               target="_blank"
               href=""
-              class="user-links__link"
             ></a>
           </li>
         </ul>

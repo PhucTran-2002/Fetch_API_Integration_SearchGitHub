@@ -1,3 +1,659 @@
+:root {
+  /* colors */
+  --clr-blue: 212 100% 50%;
+  --clr-white: 0 0% 100%;
+  /* light mode colors */
+  --clr-grayBlue: 217 20% 51%;
+  --clr-marine: 217 35% 45%;
+  --clr-darkBlue: 217 21% 21%;
+  --clr-darkWhite: 227 100% 98%;
+  /* dark mode colors */
+  --clr-black: 220 40% 13%;
+  --clr-lightBlack: 222 41% 20%;
+  /* font-sizes */
+  --fs-600: 1.625rem;
+  --fs-500: 1rem;
+  --fs-400: 0.9375rem;
+  --fs-300: 1rem;
+  --fs-200: 0.6875rem;
+  /* font-families */
+  --ff-reg: "Space Mono";
+}
 
+@media (min-width: 35em) {
+  :root {
+    --fs-600: 1.625rem;
+    --fs-500: 1.375rem;
+    --fs-400: 1rem;
+    --fs-300: 0.9375rem;
+    --fs-200: 0.8125rem;
+  }
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Reset margins */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-weight: 400;
+}
+
+/* set up the body */
+body {
+  font-family: var(--ff-reg);
+  font-size: var(--fs-400);
+  color: hsl(var(--clr-grayBlue));
+  background-color: hsl(var(--clr-darkWhite));
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* make form elements easier to work with */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* ------------------- */
+/* Utility classes     */
+/* ------------------- */
+/* These are still generic utilities, not tied to a specific BEM block */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ------------------- */
+/* BEM Blocks          */
+/* ------------------- */
+.header {
+  display: flex;
+  /* Converted from .flex utility */
+  justify-content: space-between;
+  width: 100%;
+  /* Ensure it takes full width of its parent */
+  max-width: 45rem;
+  /* Constrain max width like .container */
+  margin-bottom: 1.5rem;
+  /* Add some space below header */
+}
+@media (min-width: 35rem) {
+  .header {
+    margin-top: 8.75rem;
+  }
+}
+@media (min-width: 54rem) {
+  .header {
+    margin-top: 9rem;
+  }
+}
+.header__title {
+  font-size: var(--fs-600);
+  font-weight: 700;
+  /* Converted from .ff-bold utility */
+  color: hsl(var(--clr-darkBlue));
+  /* Converted from .text-dark utility */
+}
+.header__mode-toggle {
+  align-self: flex-start;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  /* Converted from .uppercase utility */
+  font-weight: 700;
+  /* Converted from .ff-bold utility */
+  color: hsl(var(--clr-marine));
+  /* Converted from .text-accent utility */
+}
+.header__mode-toggle:hover, .header__mode-toggle:active {
+  color: hsl(220, 18%, 16%);
+  filter: invert(0.6) sepia(2) saturate(100) hue-rotate(180deg) brightness(60%);
+}
+.header__mode-icon {
+  position: relative;
+  top: 0.2rem;
+  display: inline;
+}
+
+.search-bar {
+  display: flex;
+  /* Converted from .flex utility */
+  flex-direction: row;
+  width: 100%;
+  max-width: 45rem;
+  /* Constrain max width like .container */
+  height: 3rem;
+  background-color: hsl(var(--clr-white));
+  border-radius: 15px;
+  box-shadow: 0px 16px 30px -10px rgba(70, 96, 187, 0.198567);
+  margin-top: 2.25rem;
+  align-items: center;
+  /* Align items vertically in search bar */
+  padding: 0 0.5rem;
+  /* Added padding to prevent content from touching edges */
+}
+.search-bar__icon {
+  height: 20px;
+  width: 20px;
+  margin-left: 0.8rem;
+  /* Use margin instead of position/left */
+  margin-right: 0.8rem;
+  /* Space between icon and input */
+}
+.search-bar__label {
+  /* Already has sr-only */
+}
+.search-bar__input {
+  flex-grow: 2;
+  border: none;
+  border-radius: 15px;
+  outline: none;
+  font-size: var(--fs-200);
+  /* Converted from .fs-200 utility */
+  padding-right: 0.5rem;
+  /* Add padding for text */
+  color: hsl(var(--clr-darkBlue));
+  /* Default text color */
+}
+.search-bar__input::placeholder {
+  color: hsl(var(--clr-marine));
+  /* Or appropriate color for placeholder */
+}
+.search-bar__error-message {
+  font-size: 11px;
+  text-align: right;
+  color: red;
+  display: none;
+  /* Controlled by JS */
+  white-space: nowrap;
+  /* Prevent wrapping for "No results" */
+  margin-left: 0.5rem;
+  /* Space before button */
+}
+@media (max-width: 423px) {
+  .search-bar__error-message {
+    padding-top: 0.5rem;
+    /* This was for a specific scenario, might need re-evaluation */
+  }
+}
+.search-bar__button {
+  background-color: hsl(var(--clr-blue));
+  color: hsl(var(--clr-white));
+  height: 2.4rem;
+  width: 5.25rem;
+  border-radius: 10px;
+  border: none;
+  margin-right: 0.25rem;
+  /* Use margin instead of position/right */
+  cursor: pointer;
+  font-weight: 700;
+  /* Converted from .ff-bold utility */
+}
+.search-bar__button:hover {
+  background-color: hsl(var(--clr-blue)/0.7);
+}
+.search-bar__button:active {
+  transform: translateY(1px);
+}
+@media (max-width: 370px) {
+  .search-bar__input {
+    font-size: 8px;
+  }
+  .search-bar__button {
+    font-size: 10px;
+    height: 2.4rem;
+    width: 3.75rem;
+  }
+}
+
+.profile-card {
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 45rem;
+  /* Constrain max width like .container */
+  background-color: hsl(var(--clr-white));
+  border-radius: 15px;
+  box-shadow: 0px 16px 30px -10px rgba(70, 96, 187, 0.198567);
+  padding: 2rem 1.5rem 4rem;
+  /* Combined all paddings */
+}
+.profile-card__presentation {
+  display: flex;
+  /* Converted from .flex utility */
+  gap: 1rem;
+  /* Default gap, adjust if needed */
+  align-items: flex-start;
+  /* Align avatar and text to top */
+}
+.profile-card__avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+}
+@media (min-width: 35rem) {
+  .profile-card__avatar {
+    width: 117px;
+    height: 117px;
+  }
+}
+.profile-card__header-info {
+  display: flex;
+  /* Converted from .flex utility */
+  flex-direction: column;
+  flex-grow: 1;
+  /* Allows it to take available space */
+  gap: 0.05rem;
+  /* Converted from inline style */
+}
+@media (min-width: 35rem) {
+  .profile-card__header-info {
+    margin-left: 2.5rem;
+    margin-top: 1rem;
+  }
+}
+@media (min-width: 54rem) {
+  .profile-card__header-info {
+    margin-left: 2.3rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* Distribute items */
+    align-items: center;
+    /* Vertically align items */
+    flex-grow: 1;
+    /* Take up available space */
+  }
+}
+.profile-card__name {
+  margin-block-end: 0;
+  order: 1;
+  font-weight: 700;
+  /* Converted from .ff-bold utility */
+  color: hsl(var(--clr-darkBlue));
+  /* Converted from .text-dark utility */
+  font-size: var(--fs-500);
+  /* Base font size */
+}
+@media (min-width: 35rem) {
+  .profile-card__name {
+    font-size: var(--fs-600);
+  }
+}
+@media (min-width: 54rem) {
+  .profile-card__name {
+    /* Adjust margin to push date to the right */
+    margin-right: auto;
+    /* Pushes date to far right */
+  }
+}
+.profile-card__username {
+  order: 2;
+  color: hsl(var(--clr-blue));
+  /* Converted from .infos a */
+  text-decoration: none;
+  /* Ensure it's not underlined by default */
+  font-size: var(--fs-300);
+  /* Standard size for username */
+}
+@media (min-width: 54rem) {
+  .profile-card__username {
+    order: 3;
+    /* Changed order */
+    margin-left: 1rem;
+    /* Space from name */
+  }
+}
+.profile-card__join-date {
+  order: 3;
+  font-size: var(--fs-300);
+  /* Standard size for date */
+}
+@media (min-width: 54rem) {
+  .profile-card__join-date {
+    order: 2;
+    /* Changed order */
+    margin-left: auto;
+    /* Pushes it to the right */
+  }
+}
+.profile-card__bio {
+  margin-top: 1.5rem;
+  /* Adjusted margin based on new structure */
+  margin-bottom: 1.45rem;
+  line-height: 1.5;
+  /* Ensure consistent line height */
+  /* Padding is handled by the parent .profile-card now */
+}
+@media (min-width: 35rem) {
+  .profile-card__bio {
+    margin-top: 2rem;
+    /* Adjust for larger screens */
+  }
+}
+@media (min-width: 54rem) {
+  .profile-card__bio {
+    margin-left: calc(117px + 2.5rem);
+    /* Align with bio, considering avatar width and margin */
+    margin-top: -1.5rem;
+    /* Pull up to align better with name/date */
+  }
+}
+.profile-card__stats-grid {
+  display: grid;
+  grid-template-areas: "repos followers following" "nbr-repos nbr-followers nbr-following";
+  row-gap: 0.4rem;
+  margin: 0 1.5rem;
+  background-color: hsl(var(--clr-darkWhite));
+  border-radius: 10px;
+  padding: 1.1rem;
+  /* Combined padding */
+  justify-content: space-around;
+  text-align: center;
+  /* Center text within grid items */
+}
+@media (max-width: 315px) {
+  .profile-card__stats-grid {
+    grid-template-areas: "repos" "nbr-repos" "followers" "nbr-followers" "following" "nbr-following";
+    place-items: center;
+    row-gap: 0;
+    padding: 1rem;
+    /* Adjust padding for very small screens */
+  }
+}
+@media (min-width: 54rem) {
+  .profile-card__stats-grid {
+    margin-left: calc(117px + 2.5rem);
+    /* Align with bio */
+    padding: 1.5rem 2rem;
+    /* Increase padding for larger screens */
+  }
+}
+.profile-card__stat-label {
+  font-size: var(--fs-200);
+  /* Converted from .fs-200 utility */
+  color: hsl(var(--clr-grayBlue));
+  /* Default text color for labels */
+}
+.profile-card__stat-label.repos {
+  grid-area: repos;
+}
+.profile-card__stat-label.followers {
+  grid-area: followers;
+}
+@media (max-width: 315px) {
+  .profile-card__stat-label.followers {
+    margin-top: 0.8rem;
+  }
+}
+.profile-card__stat-label.following {
+  grid-area: following;
+}
+@media (max-width: 315px) {
+  .profile-card__stat-label.following {
+    margin-top: 0.8rem;
+  }
+}
+.profile-card__stat-value {
+  font-size: var(--fs-500);
+  /* Converted from .fs-500 utility */
+  font-weight: 700;
+  /* Converted from .ff-bold utility */
+  color: hsl(var(--clr-darkBlue));
+  /* Converted from .text-dark utility */
+}
+.profile-card__stat-value#obj-repos {
+  grid-area: nbr-repos;
+}
+.profile-card__stat-value#obj-followers {
+  grid-area: nbr-followers;
+}
+.profile-card__stat-value#obj-following {
+  grid-area: nbr-following;
+}
+.profile-card__social-links {
+  list-style: none;
+  padding-inline-start: 1.5rem;
+  margin-top: 1.5rem;
+  /* Add some space above the list */
+  display: grid;
+  /* Converted from .grid utility */
+  gap: 0;
+  /* Converted from inline style */
+  grid-template-areas: "item1" "item2" "item3" "item4";
+  grid-template-columns: 80%;
+  overflow-wrap: break-word;
+}
+@media (min-width: 700px) {
+  .profile-card__social-links {
+    grid-template-areas: "item1 item3" "item2 item4";
+    grid-template-columns: repeat(2, 1fr);
+    /* Two equal columns */
+    column-gap: 2rem;
+    /* Add space between columns */
+  }
+}
+@media (min-width: 54rem) {
+  .profile-card__social-links {
+    margin-left: calc(117px + 2.5rem);
+    /* Align with bio and stats */
+    margin-top: 2rem;
+    /* Adjust top margin */
+  }
+}
+.profile-card__social-item {
+  display: flex;
+  align-items: center;
+  /* Vertically align icon and text */
+  gap: 1.5rem;
+  /* Space between icon and text */
+  margin-bottom: 1rem;
+  /* Space between items in mobile */
+}
+.profile-card__social-item#list-item1 {
+  grid-area: item1;
+}
+.profile-card__social-item#list-item2 {
+  grid-area: item2;
+}
+.profile-card__social-item#list-item3 {
+  grid-area: item3;
+}
+.profile-card__social-item#list-item4 {
+  grid-area: item4;
+}
+@media (min-width: 700px) {
+  .profile-card__social-item {
+    /* Adjust individual item positions if needed after grid changes */
+  }
+  .profile-card__social-item:nth-child(1) {
+    /* This was a relative position. Consider if still necessary with flex/grid */
+  }
+}
+.profile-card__social-icon {
+  height: 20px;
+  width: 20px;
+  flex-shrink: 0;
+  /* Prevent icon from shrinking */
+}
+.profile-card__social-text {
+  color: hsl(var(--clr-marine));
+  /* Default color for text */
+  text-decoration: none;
+  display: block;
+  /* Make it a block element to control flow */
+}
+@media (max-width: 315px) {
+  .profile-card__social-text {
+    font-size: 0.8rem;
+  }
+}
+.profile-card__social-text--link:hover, .profile-card__social-text--link:focus {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.profile-card__social-text--unavailable {
+  /* Modifier for unavailable links */
+  opacity: 0.5;
+}
+
+/* Dark mode specific styles - these can remain as global classes, but applied to specific BEM blocks */
+body.dark-mode {
+  color: hsl(var(--clr-white));
+  background-color: hsl(var(--clr-black));
+}
+body.dark-mode .header__title {
+  color: hsl(var(--clr-white));
+}
+body.dark-mode .header__mode-toggle {
+  color: hsl(var(--clr-white));
+}
+body.dark-mode .header__mode-toggle:hover, body.dark-mode .header__mode-toggle:active {
+  color: hsl(var(--clr-white));
+  /* Adjust hover for dark mode */
+  filter: none;
+  /* Reset filter or apply new one */
+}
+body.dark-mode .header__mode-icon {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(200%);
+  /* Make moon icon white */
+}
+body.dark-mode .search-bar {
+  background-color: hsl(var(--clr-lightBlack));
+  box-shadow: none;
+  /* Adjust shadow for dark mode if desired */
+}
+body.dark-mode .search-bar__input {
+  color: hsl(var(--clr-white));
+}
+body.dark-mode .search-bar__input::placeholder {
+  color: hsl(var(--clr-white));
+  /* Adjust placeholder for dark mode */
+}
+body.dark-mode .search-bar__icon {
+  filter: invert(0.8) sepia(0) saturate(100) hue-rotate(0deg) brightness(200%);
+  /* Example to make search icon light */
+}
+body.dark-mode .profile-card {
+  background-color: hsl(var(--clr-lightBlack));
+  box-shadow: none;
+  /* Adjust shadow for dark mode if desired */
+}
+body.dark-mode .profile-card__name, body.dark-mode .profile-card__stat-value {
+  color: hsl(var(--clr-white));
+}
+body.dark-mode .profile-card__bio, body.dark-mode .profile-card__join-date, body.dark-mode .profile-card__stat-label {
+  color: hsl(var(--clr-white));
+  /* Make text light */
+}
+body.dark-mode .profile-card__stats-grid {
+  background-color: hsl(var(--clr-black));
+  /* Darker background for stats */
+}
+body.dark-mode .profile-card__social-text {
+  color: hsl(var(--clr-white));
+  /* Ensure social text is white */
+}
+body.dark-mode .profile-card__social-icon {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(200%);
+  /* Example to make social icons light */
+}
+
+/* Utility classes (can be modified or removed if their functionality is fully integrated into BEM) */
+/* The utility classes you provided are still useful for general layout (flex, grid, flow, container) */
+/* and should be kept unless you want to integrate them completely into BEM component styles. */
+/* For example, instead of `.flex`, you'd explicitly write `display: flex;` in the BEM element. */
+/* I've kept them here for now, but integrated where it made sense (e.g., .header already uses display:flex) */
+.flex {
+  display: flex;
+  gap: var(--gap, 1rem);
+}
+
+.grid {
+  display: grid;
+  gap: var(--gap, 1rem);
+}
+
+.d-block {
+  display: block;
+}
+
+.flow > *:where(:not(:first-child)) {
+  margin-top: var(--flow-space, 1.5rem);
+}
+
+.container {
+  /* This utility class is not directly used in the provided HTML anymore but kept for completeness */
+  padding-inline: 2em;
+  margin-inline: auto;
+  max-width: 56rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 35rem) {
+  .container {
+    padding-inline: 4rem;
+  }
+}
+@media (min-width: 45rem) {
+  .container {
+    padding-inline: 2rem;
+  }
+}
+.err-msg {
+  /* Renamed from original for consistency, but tied to search-bar__error-message */
+  font-size: 11px;
+  text-align: right;
+  color: red;
+  display: none;
+}
 
 /*# sourceMappingURL=styles.css.map */
