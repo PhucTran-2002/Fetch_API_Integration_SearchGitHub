@@ -1,13 +1,13 @@
-// Chờ cho toàn bộ nội dung HTML được tải xong trước khi chạy script
+// Wait for the entire HTML content to be loaded before running the script
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Các phần tử DOM ---
+   // --- DOM Elements ---
     const themeToggleButton = document.getElementById('header-button');
     const searchInput = document.getElementById('search');
-    const searchButton = document.querySelector('.search-bar__button'); // Chọn bằng class vì không có ID
+    const searchButton = document.querySelector('.search-bar__button'); 
     const errorMessage = document.getElementById('search-err');
     const body = document.body;
 
-    // Các phần tử trong thẻ hồ sơ
+     // Elements within the profile card
     const avatar = document.getElementById('obj-avatar');
     const userName = document.getElementById('obj-name');
     const userLogin = document.getElementById('obj-username');
@@ -21,17 +21,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const twitterEl = document.getElementById('obj-twitter');
     const companyEl = document.getElementById('obj-company');
 
-    // URL API của GitHub
+    // URL API GitHub
     const API_URL = 'https://api.github.com/users/';
 
     
-
-    // Hàm cập nhật giao diện
+ // Function to update the UI theme
     const updateThemeUI = (theme) => {
         const themeText = theme === 'light' ? 'Dark' : 'Light';
         const themeIcon = theme === 'light' ? 'icon_moon.svg' : 'icon_sun.svg';
 
-        // Cập nhật nội dung của nút
+        
         themeToggleButton.innerHTML = `
             ${themeText}
             <img class="header__mode-icon" src="./assets/images/${themeIcon}" alt="icon-${theme}-mode" />
@@ -47,36 +46,35 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('theme', theme);
     };
 
-    // Khởi tạo giao diện khi tải trang
+   
     const initTheme = () => {
         const savedTheme = localStorage.getItem('theme') || 'light';
         updateThemeUI(savedTheme);
     };
-
-    // Sự kiện click để chuyển đổi giao diện
+ // Click event to toggle theme
     themeToggleButton.addEventListener('click', () => {
         const currentTheme = themeToggleButton.getAttribute('data-theme') || 'light';
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
         updateThemeUI(newTheme);
     });
 
-    // --- LOGIC TÌM KIẾM GITHUB API ---
+    // --- GITHUB API SEARCH LOGIC ---
 
-    // Hàm để lấy dữ liệu người dùng
+    // Function to fetch user data
     const fetchUser = async (username) => {
         if (!username || username.trim() === '') {
             errorMessage.style.display = 'block';
             return;
         }
 
-        errorMessage.style.display = 'none'; // Ẩn thông báo lỗi
+        errorMessage.style.display = 'none'; 
 
         try {
             const response = await fetch(API_URL + username);
 
             if (!response.ok) {
                 if (response.status === 404) {
-                    errorMessage.style.display = 'block'; // Hiển thị lỗi "No results"
+                    errorMessage.style.display = 'block'; // Display "No results" error
                 }
                 return;
             }
@@ -85,21 +83,21 @@ document.addEventListener('DOMContentLoaded', () => {
             updateProfileCard(data);
 
         } catch (error) {
-            console.error("Lỗi khi lấy dữ liệu người dùng:", error);
+            console.error("Error fetching user data:", error);
             errorMessage.style.display = 'block';
         }
     };
 
-    // Hàm để định dạng ngày tham gia
+     // Function to format the join date
     const formatJoinDate = (dateString) => {
         const date = new Date(dateString);
         const day = date.getDate();
-        const month = date.toLocaleString('en-GB', { month: 'short' }); // Dùng 'en-GB' cho định dạng "26 Jan 2011"
+        const month = date.toLocaleString('en-GB', { month: 'short' }); 
         const year = date.getFullYear();
         return `Joined ${day} ${month} ${year}`;
     };
     
-    // Hàm để cập nhật thẻ hồ sơ với dữ liệu người dùng
+     // Function to update the profile card with user data
     const updateProfileCard = (user) => {
         avatar.src = user.avatar_url;
         userName.textContent = user.name || user.login;
@@ -110,17 +108,17 @@ document.addEventListener('DOMContentLoaded', () => {
         repos.textContent = user.public_repos;
         followers.textContent = user.followers;
         following.textContent = user.following;
-
-        // Cập nhật các liên kết mạng xã hội và xử lý giá trị trống
+        // Update social links and handle empty values
         updateSocialLink(locationEl, user.location);
         updateSocialLink(websiteEl, user.blog, true);
         updateSocialLink(twitterEl, user.twitter_username, true, `https://twitter.com/${user.twitter_username}`);
         updateSocialLink(companyEl, user.company, true);
     };
     
-    // Hàm phụ trợ để cập nhật các liên kết xã hội
+    
+    // Helper function to update social links
     const updateSocialLink = (element, value, isLink = false, linkHref = '') => {
-        const listItem = element.closest('li'); // Tìm phần tử <li> cha
+        const listItem = element.closest('li'); // Find the parent <li> element
         if (value) {
             element.textContent = value;
             if (isLink) {
@@ -137,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
 
-    // --- BỘ LẮNG NGHE SỰ KIỆN cho TÌM KIẾM ---
+    // --- EVENT LISTENERS for SEARCH ---
     searchButton.addEventListener('click', () => {
         fetchUser(searchInput.value.trim());
     });
@@ -148,7 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- KHỞI TẠO ---
     initTheme();
-    fetchUser('octocat'); // Lấy người dùng mặc định "octocat" khi tải trang
+    fetchUser('octocat'); // Fetch default user "octocat" on page load
 });
