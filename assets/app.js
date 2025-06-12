@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
 
-    // Hàm cập nhật giao diện (văn bản và biểu tượng)
+    // Hàm cập nhật giao diện
     const updateThemeUI = (theme) => {
         const themeText = theme === 'light' ? 'Dark' : 'Light';
         const themeIcon = theme === 'light' ? 'icon_moon.svg' : 'icon_sun.svg';
@@ -64,7 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Hàm để lấy dữ liệu người dùng
     const fetchUser = async (username) => {
-        if (!username) return;
+        if (!username || username.trim() === '') {
+            errorMessage.style.display = 'block';
+            return;
+        }
 
         errorMessage.style.display = 'none'; // Ẩn thông báo lỗi
 
