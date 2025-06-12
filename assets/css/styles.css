@@ -550,6 +550,7 @@ body.dark-mode .profile-card__social-text--unavailable {
 body.dark-mode .profile-card__social-icon {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(200%);
 }
+
 .flex {
   display: flex;
   gap: var(--gap, 1rem);
