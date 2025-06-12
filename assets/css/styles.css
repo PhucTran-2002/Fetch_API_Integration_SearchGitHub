@@ -246,6 +246,7 @@ select {
   flex-direction: column;
   flex-grow: 1;
   gap: 0.05rem;
+  position: relative;
 }
 @media (min-width: 35rem) {
   .profile-card__header-info {
@@ -259,7 +260,7 @@ select {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     flex-grow: 1;
   }
 }
@@ -285,11 +286,13 @@ select {
   color: hsl(var(--clr-blue));
   text-decoration: none;
   font-size: var(--fs-300);
+  margin-top: -0.25rem;
 }
 @media (min-width: 54rem) {
   .profile-card__username {
-    order: 3;
-    margin-left: 1rem;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0.25rem;
   }
 }
 .profile-card__join-date {
@@ -300,6 +303,9 @@ select {
   .profile-card__join-date {
     order: 2;
     margin-left: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }
 .profile-card__bio {
@@ -421,6 +427,10 @@ select {
 .profile-card__social-item#list-item4 {
   grid-area: item4;
 }
+.profile-card__social-item.not-available {
+  opacity: 0.5;
+  color: rgb(165, 180, 205);
+}
 .profile-card__social-icon {
   height: 20px;
   width: 20px;
@@ -442,6 +452,7 @@ select {
 }
 .profile-card__social-text--unavailable {
   opacity: 0.5;
+  color: rgb(165, 180, 205);
 }
 
 body.dark-mode {
@@ -485,8 +496,15 @@ body.dark-mode .profile-card__stats-grid {
 body.dark-mode .profile-card__social-text {
   color: hsl(var(--clr-white));
 }
+body.dark-mode .profile-card__social-text--unavailable {
+  color: rgb(165, 180, 205);
+}
 body.dark-mode .profile-card__social-icon {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(200%);
+}
+body.dark-mode .profile-card__social-item.not-available {
+  opacity: 0.5;
+  color: rgb(165, 180, 205);
 }
 
 .flex {

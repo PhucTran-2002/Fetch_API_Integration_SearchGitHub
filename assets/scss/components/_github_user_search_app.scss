@@ -1,4 +1,3 @@
-
 @media (prefers-reduced-motion: reduce) {
 
     *,
@@ -191,7 +190,7 @@
         flex-direction: column;
         flex-grow: 1;
         gap: 0.05rem;
-        
+        position: relative;
 
         @media (min-width: 35rem) {
             margin-left: 2.5rem;
@@ -203,7 +202,7 @@
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             flex-grow: 1;
         }
     }
@@ -232,11 +231,12 @@
         color: hsl(var(--clr-blue));
         text-decoration: none;
         font-size: var(--fs-300);
-
+        margin-top: -0.25rem;
 
         @media (min-width: 54rem) {
-            order: 3;
-            margin-left: 1rem;
+            width: 100%;
+            margin-left: 0;
+            margin-top: 0.25rem;
         }
     }
 
@@ -248,7 +248,9 @@
         @media (min-width: 54rem) {
             order: 2;
             margin-left: auto;
-          
+            position: absolute;
+            top: 0;
+            right: 0;
         }
     }
 
@@ -395,6 +397,11 @@
             grid-area: item4;
         }
 
+        &.not-available {
+            opacity: 0.5;
+            color: rgb(165, 180, 205);
+        }
+
         @media (min-width: 700px) {
 
             &:nth-child(1) {
@@ -420,7 +427,6 @@
         }
 
         &--link {
-
             &:hover,
             &:focus {
                 cursor: pointer;
@@ -430,6 +436,7 @@
 
         &--unavailable {
             opacity: .5;
+            color: rgb(165, 180, 205);
         }
     }
 }
@@ -488,10 +495,21 @@ body.dark-mode {
 
         &__social-text {
             color: hsl(var(--clr-white));
+
+            &--unavailable {
+                color: rgb(165, 180, 205);
+            }
         }
 
         &__social-icon {
             filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(200%);
+        }
+
+        &__social-item {
+            &.not-available {
+                opacity: 0.5;
+                color: rgb(165, 180, 205);
+            }
         }
     }
 }
