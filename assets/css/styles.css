@@ -35,7 +35,6 @@
   box-sizing: border-box;
 }
 
-/* Reset margins */
 body,
 h1,
 h2,
@@ -58,7 +57,6 @@ p {
   font-weight: 400;
 }
 
-/* set up the body */
 body {
   font-family: var(--ff-reg);
   font-size: var(--fs-400);
@@ -69,14 +67,12 @@ body {
   overflow-x: hidden;
 }
 
-/* make images easier to work with */
 img,
 picture {
   max-width: 100%;
   display: block;
 }
 
-/* make form elements easier to work with */
 input,
 button,
 textarea,
@@ -94,10 +90,6 @@ select {
     scroll-behavior: auto !important;
   }
 }
-/* ------------------- */
-/* Utility classes     */
-/* ------------------- */
-/* These are still generic utilities, not tied to a specific BEM block */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -110,19 +102,12 @@ select {
   border: 0;
 }
 
-/* ------------------- */
-/* BEM Blocks          */
-/* ------------------- */
 .header {
   display: flex;
-  /* Converted from .flex utility */
   justify-content: space-between;
   width: 100%;
-  /* Ensure it takes full width of its parent */
   max-width: 45rem;
-  /* Constrain max width like .container */
   margin-bottom: 1.5rem;
-  /* Add some space below header */
 }
 @media (min-width: 35rem) {
   .header {
@@ -137,9 +122,7 @@ select {
 .header__title {
   font-size: var(--fs-600);
   font-weight: 700;
-  /* Converted from .ff-bold utility */
   color: hsl(var(--clr-darkBlue));
-  /* Converted from .text-dark utility */
 }
 .header__mode-toggle {
   align-self: flex-start;
@@ -148,11 +131,8 @@ select {
   cursor: pointer;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  /* Converted from .uppercase utility */
   font-weight: 700;
-  /* Converted from .ff-bold utility */
   color: hsl(var(--clr-marine));
-  /* Converted from .text-accent utility */
 }
 .header__mode-toggle:hover, .header__mode-toggle:active {
   color: hsl(220, 18%, 16%);
@@ -166,31 +146,22 @@ select {
 
 .search-bar {
   display: flex;
-  /* Converted from .flex utility */
   flex-direction: row;
   width: 100%;
   max-width: 45rem;
-  /* Constrain max width like .container */
   height: 3rem;
   background-color: hsl(var(--clr-white));
   border-radius: 15px;
   box-shadow: 0px 16px 30px -10px rgba(70, 96, 187, 0.198567);
   margin-top: 2.25rem;
   align-items: center;
-  /* Align items vertically in search bar */
   padding: 0 0.5rem;
-  /* Added padding to prevent content from touching edges */
 }
 .search-bar__icon {
   height: 20px;
   width: 20px;
   margin-left: 0.8rem;
-  /* Use margin instead of position/left */
   margin-right: 0.8rem;
-  /* Space between icon and input */
-}
-.search-bar__label {
-  /* Already has sr-only */
 }
 .search-bar__input {
   flex-grow: 2;
@@ -198,31 +169,23 @@ select {
   border-radius: 15px;
   outline: none;
   font-size: var(--fs-200);
-  /* Converted from .fs-200 utility */
   padding-right: 0.5rem;
-  /* Add padding for text */
   color: hsl(var(--clr-darkBlue));
-  /* Default text color */
 }
 .search-bar__input::placeholder {
   color: hsl(var(--clr-marine));
-  /* Or appropriate color for placeholder */
 }
 .search-bar__error-message {
   font-size: 11px;
-  text-align: right;
   color: red;
   display: none;
-  /* Controlled by JS */
   white-space: nowrap;
-  /* Prevent wrapping for "No results" */
   margin-left: 0.5rem;
-  /* Space before button */
+  margin-right: 10px;
 }
 @media (max-width: 423px) {
   .search-bar__error-message {
     padding-top: 0.5rem;
-    /* This was for a specific scenario, might need re-evaluation */
   }
 }
 .search-bar__button {
@@ -505,47 +468,22 @@ body.dark-mode .search-bar__input {
 }
 body.dark-mode .search-bar__input::placeholder {
   color: hsl(var(--clr-white));
-  opacity: 0.7;
-}
-body.dark-mode .search-bar__button {
-  background-color: hsl(var(--clr-blue));
-  color: hsl(var(--clr-white));
-}
-body.dark-mode .search-bar__button:hover {
-  background-color: hsl(var(--clr-blue) / 0.7);
 }
 body.dark-mode .profile-card {
   background-color: hsl(var(--clr-lightBlack));
   box-shadow: none;
 }
 body.dark-mode .profile-card__name, body.dark-mode .profile-card__stat-value {
- color: hsl(var(--clr-white));
+  color: hsl(var(--clr-white));
 }
 body.dark-mode .profile-card__bio, body.dark-mode .profile-card__join-date, body.dark-mode .profile-card__stat-label {
   color: hsl(var(--clr-white));
-}
-body.dark-mode .profile-card__username {
-  transition: color 0.3s ease;
-}
-body.dark-mode .profile-card__username:hover {
-  color: hsl(var(--clr-blue));
 }
 body.dark-mode .profile-card__stats-grid {
   background-color: hsl(var(--clr-black));
 }
 body.dark-mode .profile-card__social-text {
   color: hsl(var(--clr-white));
-}
-body.dark-mode .profile-card__social-text--link {
-  color: hsl(var(--clr-white));
-  transition: color 0.3s ease;
-}
-body.dark-mode .profile-card__social-text--link:hover {
-  color: hsl(var(--clr-blue));
-}
-body.dark-mode .profile-card__social-text--unavailable {
-  color: hsl(var(--clr-white));
-  opacity: 0.5;
 }
 body.dark-mode .profile-card__social-icon {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(200%);

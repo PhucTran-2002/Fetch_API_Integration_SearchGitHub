@@ -109,12 +109,12 @@
 
     &__error-message {
         font-size: 11px;
-        text-align: right;
         color: red;
         display: none;
         white-space: nowrap;
         margin-left: 0.5rem;
-        margin-right: 12px;
+        margin-right: 10px;
+       
         @media (max-width: 423px) {
             padding-top: .5rem;
 
@@ -453,25 +453,18 @@ body.dark-mode {
         }
     }
 
-    .header__mode-icon {
-        filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(200%);
-      
-    }
-
     .search-bar {
         background-color: hsl(var(--clr-lightBlack));
         box-shadow: none;
         &__input {
             color: hsl(var(--clr-white));
+            background-color: hsl(var(--clr-lightBlack));
 
             &::placeholder {
                 color: hsl(var(--clr-white));
             }
         }
 
-        &__icon {
-            filter: invert(0.8) sepia(0) saturate(100) hue-rotate(0deg) brightness(200%);
-        }
     }
 
     .profile-card {
