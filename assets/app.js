@@ -36,7 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
             ${themeText}
             <img class="header__mode-icon" src="./assets/images/${themeIcon}" alt="icon-${theme}-mode" />
         `;
-        body.className = `container ${theme}`; // Áp dụng class 'light' hoặc 'dark' cho <body>
+        
+        // Update theme class and data attribute
+        if (theme === 'dark') {
+            body.classList.add('dark-mode');
+        } else {
+            body.classList.remove('dark-mode');
+        }
+        themeToggleButton.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
     };
 
@@ -48,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Sự kiện click để chuyển đổi giao diện
     themeToggleButton.addEventListener('click', () => {
-        const currentTheme = localStorage.getItem('theme') || 'light';
+        const currentTheme = themeToggleButton.getAttribute('data-theme') || 'light';
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
         updateThemeUI(newTheme);
     });

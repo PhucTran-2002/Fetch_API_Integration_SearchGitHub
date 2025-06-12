@@ -504,22 +504,37 @@ body.dark-mode .search-bar {
 }
 body.dark-mode .search-bar__input {
   color: hsl(var(--clr-white));
+  background-color: hsl(var(--clr-lightBlack));
 }
 body.dark-mode .search-bar__input::placeholder {
   color: hsl(var(--clr-white));
+  opacity: 0.7;
 }
 body.dark-mode .search-bar__icon {
-  filter: invert(0.8) sepia(0) saturate(100) hue-rotate(0deg) brightness(200%);
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(200%);
+}
+body.dark-mode .search-bar__button {
+  background-color: hsl(var(--clr-blue));
+  color: hsl(var(--clr-white));
+}
+body.dark-mode .search-bar__button:hover {
+  background-color: hsl(var(--clr-blue) / 0.7);
 }
 body.dark-mode .profile-card {
   background-color: hsl(var(--clr-lightBlack));
   box-shadow: none;
 }
 body.dark-mode .profile-card__name, body.dark-mode .profile-card__stat-value {
-  color: hsl(var(--clr-white));
+ color: hsl(var(--clr-white));
 }
 body.dark-mode .profile-card__bio, body.dark-mode .profile-card__join-date, body.dark-mode .profile-card__stat-label {
   color: hsl(var(--clr-white));
+}
+body.dark-mode .profile-card__username {
+  transition: color 0.3s ease;
+}
+body.dark-mode .profile-card__username:hover {
+  color: hsl(var(--clr-blue));
 }
 body.dark-mode .profile-card__stats-grid {
   background-color: hsl(var(--clr-black));
@@ -527,8 +542,23 @@ body.dark-mode .profile-card__stats-grid {
 body.dark-mode .profile-card__social-text {
   color: hsl(var(--clr-white));
 }
+body.dark-mode .profile-card__social-text--link {
+  color: hsl(var(--clr-white));
+  transition: color 0.3s ease;
+}
+body.dark-mode .profile-card__social-text--link:hover {
+  color: hsl(var(--clr-blue));
+}
+body.dark-mode .profile-card__social-text--unavailable {
+  color: hsl(var(--clr-white));
+  opacity: 0.5;
+}
 body.dark-mode .profile-card__social-icon {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(200%);
+}
+body.dark-mode .search-bar__error-message {
+  color: hsl(var(--clr-white));
+  opacity: 0.8;
 }
 
 .flex {

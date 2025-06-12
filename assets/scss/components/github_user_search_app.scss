@@ -10,13 +10,6 @@
         scroll-behavior: auto !important;
     }
 }
-
-/* ------------------- */
-/* Utility classes     */
-/* ------------------- */
-
-/* These are still generic utilities, not tied to a specific BEM block */
-
 .sr-only {
     position: absolute;
     width: 1px;
@@ -29,20 +22,13 @@
     border: 0;
 }
 
-/* ------------------- */
-/* BEM Blocks          */
-/* ------------------- */
-
 .header {
     display: flex;
-    /* Converted from .flex utility */
     justify-content: space-between;
     width: 100%;
-    /* Ensure it takes full width of its parent */
     max-width: 45rem;
-    /* Constrain max width like .container */
     margin-bottom: 1.5rem;
-    /* Add some space below header */
+  
 
     @media (min-width: 35rem) {
         margin-top: 8.75rem;
@@ -55,9 +41,7 @@
     &__title {
         font-size: var(--fs-600);
         font-weight: 700;
-        /* Converted from .ff-bold utility */
         color: hsl(var(--clr-darkBlue));
-        /* Converted from .text-dark utility */
     }
 
     &__mode-toggle {
@@ -67,11 +51,9 @@
         cursor: pointer;
         letter-spacing: 2.5px;
         text-transform: uppercase;
-        /* Converted from .uppercase utility */
         font-weight: 700;
-        /* Converted from .ff-bold utility */
         color: hsl(var(--clr-marine));
-        /* Converted from .text-accent utility */
+    
 
         &:hover,
         &:active {
@@ -89,32 +71,26 @@
 
 .search-bar {
     display: flex;
-    /* Converted from .flex utility */
     flex-direction: row;
     width: 100%;
     max-width: 45rem;
-    /* Constrain max width like .container */
     height: 3rem;
     background-color: hsl(var(--clr-white));
     border-radius: 15px;
     box-shadow: 0px 16px 30px -10px rgba(70, 96, 187, 0.198567);
     margin-top: 2.25rem;
     align-items: center;
-    /* Align items vertically in search bar */
     padding: 0 0.5rem;
-    /* Added padding to prevent content from touching edges */
-
+    
     &__icon {
         height: 20px;
         width: 20px;
         margin-left: 0.8rem;
-        /* Use margin instead of position/left */
         margin-right: 0.8rem;
-        /* Space between icon and input */
+      
     }
 
     &__label {
-        /* Already has sr-only */
     }
 
     &__input {
@@ -123,15 +99,11 @@
         border-radius: 15px;
         outline: none;
         font-size: var(--fs-200);
-        /* Converted from .fs-200 utility */
         padding-right: 0.5rem;
-        /* Add padding for text */
         color: hsl(var(--clr-darkBlue));
-        /* Default text color */
 
         &::placeholder {
             color: hsl(var(--clr-marine));
-            /* Or appropriate color for placeholder */
         }
     }
 
@@ -140,15 +112,12 @@
         text-align: right;
         color: red;
         display: none;
-        /* Controlled by JS */
         white-space: nowrap;
-        /* Prevent wrapping for "No results" */
         margin-left: 0.5rem;
-        /* Space before button */
 
         @media (max-width: 423px) {
             padding-top: .5rem;
-            /* This was for a specific scenario, might need re-evaluation */
+
         }
     }
 
